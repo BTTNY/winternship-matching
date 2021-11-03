@@ -38,15 +38,15 @@ def main():
     if match_counter == 1000:
         unmatched_students = [name for name in students.keys() if students[name]['matched_company'] == None]
         with open('unmatched.csv', 'w') as f:
-            f.write('Last, First, Emplid\n')
+            f.write('Last, First, Emplid, CUNY, Year, Gender, Format, Student Pref\n')
             for name in unmatched_students:
-                f.write(f"{students[name]['last']}, {students[name]['first']}, {students[name]['EMPLID']}")
+                f.write(f"{students[name]['last']}, {students[name]['first']}, {students[name]['EMPLID']},{students[name]['cuny']},{students[name]['year']},{students[name]['gender']},{students[name]['sformat']},{students[name]['ranked_companies']}\n")
 
     with open('matches.csv', 'w') as f:
-        f.write('Last, First, Emplid, Team\n')
+        f.write('Last, First, Emplid, Team, CUNY, Year, Gender, Format, Student Pref\n')
         for name in students:
             if students[name]['matched_company']:
-                f.write(f"{students[name]['last']}, {students[name]['first']},{students[name]['EMPLID']},{students[name]['matched_company']}\n")
+                f.write(f"{students[name]['last']}, {students[name]['first']},{students[name]['EMPLID']},{students[name]['matched_company']},{students[name]['cuny']},{students[name]['year']},{students[name]['gender']},{students[name]['sformat']},{students[name]['ranked_companies']}\n")
     return
 
 if __name__ == "__main__":
