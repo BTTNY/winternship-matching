@@ -8,6 +8,9 @@ def is_eligible(new_student: dict, company: str, companies: dict) -> bool:
         return False
     if 'No' in new_student['f1j1'] and companies[company]['f1_j1'] != 'Yes':
         return False
+    #For 2021 companies could choose if they were a virtual, hybrid, or in person internships
+    #Students could also select what format they preferred for their internships
+    #Virtual only students were only matched to virtual companies for COVID concerns
     if new_student['sformat']=='Virtual' and companies[company]['format'] != 'Virtual':
         return False
     return True
@@ -40,7 +43,9 @@ def is_good_fit(new_student: dict, team: list , students: dict , total: int) -> 
         if [students[name]['year'] for name in team].count(new_student['year'])/total > 0.8:
             #print([students[name]['year'] for name in team].count(new_student['year']),total,[students[name]['year'] for name in team].count(new_student['year'])/total)
             return False
-
+            
+    # Original code is commented out below.
+    # Shifted from using numbers to using ratios on a team, allowing for more than one male on large teams, etc.
     """"
     if 'Male' in new_student['gender'] and 'Male' in [students[name]['gender'] for name in team]:
         return False
